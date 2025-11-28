@@ -1,0 +1,42 @@
+# =====================
+# Server Configuration
+# =====================
+server:
+  port: 8091
+  forward-headers-strategy: framework
+
+# =====================
+# Spring Application Settings
+# =====================
+spring:
+  application:
+    name: tus-resumable-upload-service  # Service name
+  profiles:
+    active: local
+  threads:
+    virtual:
+      enabled: true
+
+  jackson:
+    mapper:
+      accept-case-insensitive-enums: true      #Allows case insensitive enum deserialization
+
+# --- DATABASE CONNECTION POOL SETTINGS ---
+  datasource:
+    hikari:
+      # Increase the maximum number of connections. Start with 50 for your test.
+      maximum-pool-size: 50
+
+      # Set a reasonable connection timeout (e.g., 20 seconds). Default is 30s.
+      connection-timeout: 20000
+
+      # Set a max lifetime to prevent stale connections (as suggested by the first WARN)
+      # Set it to slightly less than the database's wait_timeout. 10 minutes is a safe start.
+      max-lifetime: 270000
+
+      # Set a timeout for idle connections to be retired.
+      idle-timeout: 120000
+
+  servlet:
+    multipart:
+      enabled: false  # we’ll stream request bodies, not use MultipartFile

@@ -1,0 +1,34 @@
+# =====================
+# Spring Datasource Configuration
+# =====================
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tusdb      # Database URL
+    username: tususer                                # Database username
+    password: tususer                                # Database password
+
+  # =====================
+  # JPA & Hibernate Settings
+  # =====================
+  jpa:
+    hibernate:
+      ddl-auto: update                                  # Auto schema update
+    open-in-view: false                               # Disable Open-In-View
+
+  # =====================
+  # Redis & Cache Settings
+  # =====================
+  data:
+    redis:
+      host: localhost                                # Redis host
+      port: 6379                                     # Redis port
+    cache:
+      type: redis                                    # Use Redis for caching
+      redis:
+      time-to-live: 600000                           # Cache TTL (10 min in ms)
+
+
+app:
+  storage:
+    temp-dir: /Users/hazrso1/Desktop/uploads/tmp
+    final-dir: /Users/hazrso1/Desktop/uploads/final

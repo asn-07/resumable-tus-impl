@@ -1,0 +1,36 @@
+# =====================
+# Spring Datasource Configuration
+# =====================
+spring:
+  datasource:
+    url: jdbc:postgresql://host.docker.internal:5432/tusdb # Database URL
+    username: tususer                                       # Database username
+    password: tususer                                       # Database password
+
+  # =====================
+  # JPA & Hibernate Settings
+  # =====================
+  jpa:
+    hibernate:
+      ddl-auto: validate                                      # Auto schema update
+    open-in-view: false                                     # Disable Open-In-View
+
+  # =====================
+  # Redis & Cache Settings
+  # =====================
+  data:
+    redis:
+      host: host.docker.internal                                      # Redis host
+      port: 6379                                           # Redis port
+    cache:
+      type: redis                                          # Use Redis for caching
+      redis:
+      time-to-live: 600000                                 # Cache TTL (10 min in ms)
+
+server:
+  port: 8091
+
+app:
+  storage:
+    temp-dir: /usr/src/app/upload/tus/tmp
+    final-dir: /usr/src/app/upload/tus/final
